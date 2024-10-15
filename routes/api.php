@@ -10,8 +10,19 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::apiResource('posts', PostController::class);
-Route::apiResource('posts.comments', CommentController::class);
+
+Route::apiResource('posts', PostController::class)->only(['index', 'show']);
+
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('posts', PostController::class)->except(['index', 'show']);
+});
+
+Route::apiResource('posts.comments', CommentController::class)->only(['index', 'show']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('posts.comments', CommentController::class)->except(['index', 'show']);
+});
 
 Route::post('/login', AuthController::class . '@login');
 Route::post('/register', AuthController::class . '@register');
