@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -20,8 +21,11 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $post = Post::create($request->all());
-        return response()->json($post,201);
+       // Récupérer l'ID de l'utilisateur authentifié
+    $userId = Auth::id();
+
+    // Créer un nouveau post en associant l'utilisateur courant
+    $post = Post::create(array_merge($request->all(), ['user_id' => $userId]));
     }
 
     /**
