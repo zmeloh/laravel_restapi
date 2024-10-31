@@ -1,9 +1,12 @@
-[phases]
-build = [
+[phases.build]
+# Définit la phase de build avec les dépendances nécessaires
+cmds = [
   "composer install --optimize-autoloader --no-dev"
 ]
 
-start = [
+[phases.start]
+# Commandes pour démarrer l'application
+cmds = [
   "php artisan key:generate",
   "php artisan migrate --force",
   "php artisan config:cache",
