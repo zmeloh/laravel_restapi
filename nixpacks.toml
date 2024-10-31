@@ -6,7 +6,6 @@ type = "php"
 [phases]
 build = [
     "composer install --optimize-autoloader --no-dev",
-    "php artisan key:generate --force",
     "php artisan migrate --force",
     "php artisan config:cache",
     "php artisan route:cache"
