@@ -1,31 +1,21 @@
 [phases]
-# Phase d'installation des dépendances PHP
-build = "composer install --optimize-autoloader --no-dev"
+build = [
+  "composer install --optimize-autoloader --no-dev"
+]
 
-# Compilation des assets front-end, si nécessaire
-# Assurez-vous que les dépendances Node.js sont déjà installées
-# build_assets = "npm install && npm run build"
-
-# Commande d'initialisation de l'application après la compilation
-# Migrations de la base de données, cache des configurations, etc.
-start = """
-php artisan key:generate
-php artisan migrate --force
-php artisan config:cache
-php artisan route:cache
-php artisan serve --host=0.0.0.0 --port=${PORT}
-"""
+start = [
+  "php artisan key:generate",
+  "php artisan migrate --force",
+  "php artisan config:cache",
+  "php artisan route:cache",
+  "php artisan serve --host=0.0.0.0 --port=${PORT}"
+]
 
 [variables]
-# Définit les variables d'environnement pour Laravel
 APP_ENV = "production"
-APP_KEY = ""  # Généré lors de l'exécution
 APP_DEBUG = "false"
 APP_URL = "http://your-app-url.com"
 
 [env]
-# Version de PHP à utiliser
 PHP_VERSION = "8.1"
-
-# Si vous utilisez Node.js pour les assets front-end
 NODE_VERSION = "18"
