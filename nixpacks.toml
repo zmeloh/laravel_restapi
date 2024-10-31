@@ -5,11 +5,11 @@ type = "php"
 # Phases de construction
 [phases]
 build = [
-    { command = "composer install --optimize-autoloader --no-dev" },
-    { command = "php artisan key:generate --force" },
-    { command = "php artisan migrate --force" },
-    { command = "php artisan config:cache" },
-    { command = "php artisan route:cache" }
+    "composer install --optimize-autoloader --no-dev",
+    "php artisan key:generate --force",
+    "php artisan migrate --force",
+    "php artisan config:cache",
+    "php artisan route:cache"
 ]
 
 # Commande par défaut pour démarrer l'application
