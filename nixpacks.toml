@@ -1,5 +1,3 @@
-# nixpacks.toml
-
 type = "php"
 
 # Phases de construction
